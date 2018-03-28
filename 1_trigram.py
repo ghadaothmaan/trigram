@@ -4,6 +4,7 @@ from collections import defaultdict
 countTwoWords = defaultdict(dict)
 countThreeWords = defaultdict(lambda: defaultdict(dict))
 probThreeWords = defaultdict(lambda: defaultdict(dict))
+words = []
 
 
 def readFile(filename):
@@ -18,11 +19,15 @@ def readFile(filename):
 
     return str
 
+
 # dog cat bird fish
 
 # calculates count
 def calculateCount(str):
     str = re.split('; |, |\*|\n|\s| ', str)
+    global words
+    words = set(str)
+    print("words:", words)
 
     # initializing the dicts first
     for i in range(str.__len__() - 2):
@@ -58,11 +63,30 @@ def getProb(first, second):
     return res
 
 
-calculateCount(readFile('/Users/gee/PycharmProjects/nlp_project/spacetoon.txt'))
+# gets probability of all word combinations
+def probOfAll():
+    for first in words:
+        for second in words:
+            for third in words:
+                print(first)
+                print(second)
+                print(third)
+                try:
+                    print(probThreeWords[first][second][third])
+                except:
+                    print(0)
 
-try:
-    res = getProb('لن', 'نستسلم')
-    for query in res:
-        print(query)
-except:
-    print("NO RESULTS")
+
+str = "hello its me hello how are you hello its you hello its her"
+calculateCount(str)
+probOfAll()
+
+
+# calculateCount(readFile('/Users/gee/PycharmProjects/nlp_project/spacetoon.txt'))
+
+# try:
+#     res = getProb('hello', 'its')
+#     for query in res:
+#         print(query)
+# except:
+#     print("NO RESULTS")

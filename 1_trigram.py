@@ -20,8 +20,6 @@ def readFile(filename):
     return str
 
 
-# dog cat bird fish
-
 # calculates count
 def calculateCount(str):
     str = re.split('; |, |\*|\n|\s| ', str)
@@ -39,10 +37,10 @@ def calculateCount(str):
         countThreeWords[str[i]][str[i + 1]][str[i + 2]] = countThreeWords[str[i]][str[i + 1]][str[i + 2]] + 1
         countTwoWords[str[i]][str[i + 1]] = countTwoWords[str[i]][str[i + 1]] + 1
 
-    # then calculating probability according to markov trigram assumption
-    # p(z|x,y) = c(x,y,z) / c(x,y)
+    # then calculating probability according to markov trigram assumption, p(z|x,y) = c(x,y,z) / c(x,y)
     for i in range(str.__len__() - 2):
-        probThreeWords[str[i]][str[i + 1]][str[i + 2]] = countThreeWords[str[i]][str[i + 1]][str[i + 2]] / countTwoWords[str[i]][str[i + 1]]
+        probThreeWords[str[i]][str[i + 1]][str[i + 2]] = countThreeWords[str[i]][str[i + 1]][str[i + 2]] / \
+                                                         countTwoWords[str[i]][str[i + 1]]
 
 
 # gets probability of a word given two other words
@@ -63,30 +61,34 @@ def getProb(first, second):
     return res
 
 
-# gets probability of all word combinations
+# gets probability of all words combinations
 def probOfAll():
     for first in words:
         for second in words:
             for third in words:
-                print(first)
-                print(second)
-                print(third)
                 try:
-                    print(probThreeWords[first][second][third])
+                    print("P({}|({},{})) = {}".format(third, first, second, probThreeWords[first][second][third]))
                 except:
-                    print(0)
+                    print("P({}|({},{})) = {}".format(third, first, second, 0))
 
+
+# dog cat bird fish
 
 str = "hello its me hello how are you hello its you hello its her"
 calculateCount(str)
-probOfAll()
-
 
 # calculateCount(readFile('/Users/gee/PycharmProjects/nlp_project/spacetoon.txt'))
+probOfAll()
 
-# try:
-#     res = getProb('hello', 'its')
-#     for query in res:
-#         print(query)
-# except:
-#     print("NO RESULTS")
+#try:
+    #res = getProb('hello', 'its')
+    #for query in res:
+        #print(query)
+#except:
+    #print("NO RESULTS")
+
+
+
+
+
+

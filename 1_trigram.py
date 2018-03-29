@@ -71,7 +71,7 @@ def probOfAll():
                     if probThreeWords[first][second][third] > 0.3:
                         file.write("P({}|({},{})) = {}".format(third, first, second, probThreeWords[first][second][third])+"\n")
                 except:
-                    x="P({}|({},{})) = {}".format(third, first,second,0)
+                    x = "P({}|({},{})) = {}".format(third, first,second,0)
 # dog cat bird fish
 
 str = "hello its me hello how are you hello its you hello its her"

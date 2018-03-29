@@ -5,6 +5,7 @@ countTwoWords = defaultdict(dict)
 countThreeWords = defaultdict(lambda: defaultdict(dict))
 probThreeWords = defaultdict(lambda: defaultdict(dict))
 words = []
+file = open("Output.txt",'w',encoding = 'utf-8')
 
 
 def readFile(filename):
@@ -67,11 +68,10 @@ def probOfAll():
         for second in words:
             for third in words:
                 try:
-                    print("P({}|({},{})) = {}".format(third, first, second, probThreeWords[first][second][third]))
+                    if probThreeWords[first][second][third] > 0.3:
+                        file.write("P({}|({},{})) = {}".format(third, first, second, probThreeWords[first][second][third])+"\n")
                 except:
-                    print("P({}|({},{})) = {}".format(third, first, second, 0))
-
-
+                    x="P({}|({},{})) = {}".format(third, first,second,0)
 # dog cat bird fish
 
 str = "hello its me hello how are you hello its you hello its her"
@@ -79,7 +79,7 @@ calculateCount(str)
 
 # calculateCount(readFile('/Users/gee/PycharmProjects/nlp_project/spacetoon.txt'))
 probOfAll()
-
+file.close()
 #try:
     #res = getProb('hello', 'its')
     #for query in res:

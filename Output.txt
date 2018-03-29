@@ -1,0 +1,10 @@
+P(are|(hello,how)) = 1.0
+P(you|(hello,its)) = 0.3333333333333333
+P(her|(hello,its)) = 0.3333333333333333
+P(me|(hello,its)) = 0.3333333333333333
+P(hello|(are,you)) = 1.0
+P(you|(how,are)) = 1.0
+P(its|(you,hello)) = 1.0
+P(hello|(its,you)) = 1.0
+P(hello|(its,me)) = 1.0
+P(how|(me,hello)) = 1.0

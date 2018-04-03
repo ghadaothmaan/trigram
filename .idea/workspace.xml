@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7df15957-1402-4459-a789-c49994083f01" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/1_trigram.py" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/index.html" afterPath="$PROJECT_DIR$/templates/index.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -27,13 +26,13 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="21" column="50" lean-forward="false" selection-start-line="21" selection-start-column="50" selection-end-line="21" selection-end-column="50" />
+            <state relative-caret-position="360">
+              <caret line="20" column="50" lean-forward="false" selection-start-line="20" selection-start-column="50" selection-end-line="20" selection-end-column="50" />
               <folding>
-                <marker date="1522780327000" expanded="true" signature="1667:1690" ph="..." />
-                <marker date="1522780327000" expanded="true" signature="1667:1706" ph="..." />
-                <marker date="1522780327000" expanded="true" signature="1667:1717" ph="..." />
-                <marker date="1522780327000" expanded="true" signature="1667:1725" ph="..." />
+                <marker date="1522781679000" expanded="true" signature="1585:1608" ph="..." />
+                <marker date="1522781679000" expanded="true" signature="1585:1624" ph="..." />
+                <marker date="1522781679000" expanded="true" signature="1585:1635" ph="..." />
+                <marker date="1522781679000" expanded="true" signature="1585:1643" ph="..." />
               </folding>
             </state>
           </provider>
@@ -487,13 +486,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="21" column="50" lean-forward="false" selection-start-line="21" selection-start-column="50" selection-end-line="21" selection-end-column="50" />
+        <state relative-caret-position="360">
+          <caret line="20" column="50" lean-forward="false" selection-start-line="20" selection-start-column="50" selection-end-line="20" selection-end-column="50" />
           <folding>
-            <marker date="1522780327000" expanded="true" signature="1667:1690" ph="..." />
-            <marker date="1522780327000" expanded="true" signature="1667:1706" ph="..." />
-            <marker date="1522780327000" expanded="true" signature="1667:1717" ph="..." />
-            <marker date="1522780327000" expanded="true" signature="1667:1725" ph="..." />
+            <marker date="1522781679000" expanded="true" signature="1585:1608" ph="..." />
+            <marker date="1522781679000" expanded="true" signature="1585:1624" ph="..." />
+            <marker date="1522781679000" expanded="true" signature="1585:1635" ph="..." />
+            <marker date="1522781679000" expanded="true" signature="1585:1643" ph="..." />
           </folding>
         </state>
       </provider>

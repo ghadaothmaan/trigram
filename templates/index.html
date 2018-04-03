@@ -12,10 +12,10 @@
 // wl array de bnedeha le autocomplete, autocomplete de function fe jquery
         $(document).ready(function () {
             $("#input").keyup(function (whitespace) {
-                <!--ascii of whitespace is 32-->
+               // ascii of whitespace is 32
                 if (whitespace.keyCode == 32) {
                     var input = "pair=" + $(this).val();
-                    <!-- url, input, function of output -->
+                    // url, input, function of output
                     $.get("/predict", input, function (data) {
                         console.log(data);
                         $('#input').autocomplete({

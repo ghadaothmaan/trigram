@@ -7,7 +7,9 @@
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script>
-
+// lama el user yekteb ayhaga, hakhod eli katabo wa3ml 3aleh get request 3shan a3raf
+// eh el predicted words, el predicted words de btkon fe array
+// wl array de bnedeha le autocomplete, autocomplete de function fe jquery
         $(document).ready(function () {
             $("#input").keyup(function (whitespace) {
                 <!--ascii of whitespace is 32-->
@@ -16,9 +18,6 @@
                     <!-- url, input, function of output -->
                     $.get("/predict", input, function (data) {
                         console.log(data);
-                        <!--lama el user yekteb ayhaga, hakhod eli katabo wa3ml 3aleh get request 3shan a3raf
-                        <!--eh el predicted words, el predicted words de btkon fe array-->
-                        <!--wl array de bnedeha le autocomplete, autocomplete de function fe jquery-->
                         $('#input').autocomplete({
                             source: data
                         });

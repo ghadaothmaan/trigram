@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles/style.css') }}">
+    <link rel="stylesheet" href="/static/styles/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            $("#input").keyup(function (whitespace) {
+                <!--ascii of whitespace is 32-->
+                if (whitespace.keyCode == 32) {
+                    var input = "pair=" + $(this).val();
+                    <!-- url, input, function of output -->
+                    $.get("/predict", input, function (data) {
+                        console.log(data);
+                        <!--lama el user yekteb ayhaga, hakhod eli katabo wa3ml 3aleh get request 3shan a3raf
+                        <!--eh el predicted words, el predicted words de btkon fe array-->
+                        <!--wl array de bnedeha le autocomplete, autocomplete de function fe jquery-->
+                        $('#input').autocomplete({
+                            source: data
+                        });
+                    });
+                }
+            });
+        });
+
+    </script>
+    <meta charset="UTF-8">
+    <title>Enter</title>
+</head>
+
+<body style="background: #779ec9; font-family: 'Amiri', 'Droid Arabic Kufi', sans-serif;">
+    <div style="width: 500px;">
+        <h2>بحث</h2>
+        <form>
+            <div>
+              <input id="input" name="pair" type="text" placeholder="بحث...">
+            </div>
+        </form>
+    </div>
+</body>
+</html>

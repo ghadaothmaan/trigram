@@ -3,6 +3,22 @@
 from __future__ import unicode_literals
 import re
 from collections import defaultdict
+from flask import Flask, render_template, request, jsonify
+
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/predict', methods=['POST', 'GET'])
+def predict():
+    sentence = request.args.get('pair')
+    array = getPrediction(sentence)
+    # print(array)
+    # returns array of predicted words
+    print(jsonify(array))
+    return jsonify(array)
 
 countTwoWords = defaultdict(dict)
 countThreeWords = defaultdict(lambda: defaultdict(dict))
@@ -25,14 +41,15 @@ def readFile(filename):
 
 # calculates count
 def calculateCount(str):
-    # reads file into a set of unique words
+    # gets rid of commas and stuff
     str = re.split('; |, |\*|\n|\s| ', str)
-    global words
-    global countOneWord
+    global words, countOneWord
+    # reads file into a set of unique words
     words = set(str)
-    print("words:", words)
+    words = list(words)
+    # print("words:", words)
 
-    # initializing the dicts first
+    # initializes the dicts first
     for i in range(str.__len__() - 2):
         countThreeWords[str[i]][str[i + 1]][str[i + 2]] = 0
         countTwoWords[str[i]][str[i + 1]] = 0
@@ -42,13 +59,13 @@ def calculateCount(str):
     countOneWord[str[str.__len__() - 2]] = 1
     countTwoWords[str[str.__len__() - 2]][str[str.__len__() - 1]] = 1
 
-    # then whenever a sentence is found, increasing its count
+    # then whenever a sentence is found, increases its count
     for i in range(str.__len__() - 2):
         countThreeWords[str[i]][str[i + 1]][str[i + 2]] = countThreeWords[str[i]][str[i + 1]][str[i + 2]] + 1
         countTwoWords[str[i]][str[i + 1]] = countTwoWords[str[i]][str[i + 1]] + 1
         countOneWord[str[i]] = countOneWord[str[i]] + 1
 
-    # then calculating probability according to markov trigram assumption, p(z|x,y) = c(x,y,z) / c(x,y)
+    # then calculates probability according to markov trigram assumption, p(z|x,y) = c(x,y,z) / c(x,y)
     for i in range(str.__len__() - 2):
         probThreeWords[str[i]][str[i + 1]][str[i + 2]] = countThreeWords[str[i]][str[i + 1]][str[i + 2]] / \
                                                          countTwoWords[str[i]][str[i + 1]]
@@ -68,7 +85,7 @@ def getTrigramProb(sentence):
     for third in countThreeWords[first][second]:
         res[third] = probThreeWords[first][second][third]
 
-    # sorting the dict by probabilities value
+    # sorts the dict by probabilities value
     s = [(k, res[k]) for k in sorted(res, key=res.get, reverse=False)]
     res = []
 
@@ -76,6 +93,7 @@ def getTrigramProb(sentence):
         res.append(key)
 
     # returns first 5 trigram predictions with highest probability
+    # print("trigram here", res[0:5])
     return res[0:5]
 
 
@@ -92,6 +110,7 @@ def getBigramProb(second):
         res.append(key)
 
     # returns first 5 bigram predictions with highest probability
+    # print("bigram here", res[0:5])
     return res[0:5]
 
 
@@ -104,6 +123,7 @@ def getUnigramProb():
     for key, value in s:
         res.append(key)
 
+    # print("unigram here", res[0:5])
     return res[0:5]
 
 
@@ -119,23 +139,30 @@ def getProbAll():
                     x = "{} {} {} {}".format(first, second, third, 0)
 
 
-calculateCount(readFile('corpus.txt'))
-sentence = input("enter your sentence: ")
-res = getTrigramProb(sentence)
+# sentence = input("enter your sentence: ")
 
-# if trigram renders no resluts, either bigram or unigram should
-if res.__len__() == 0:
-    sentence = sentence.split()
-    second = sentence[-1]
-    res = getBigramProb(second)
-if res.__len__() == 0:
-    res = getUnigramProb()
+def getPrediction(sentence):
+    calculateCount(readFile('corpus.txt'))
+    res = getTrigramProb(sentence)
 
-for query in res:
-    print(query)
+    # if trigram renders no resluts, either bigram or unigram should
+    if res.__len__() == 0:
+        sentence = sentence.split()
+        second = sentence[-1]
+        res = getBigramProb(second)
+    if res.__len__() == 0:
+        res = getUnigramProb()
 
-# getProbAll()
-# file.close()
+    # for autocomplete to work, sticking user input to begining of each element in res array
+    res = [sentence + " " + s for s in res]
+    return res
 
-# جهد عمل ألوان
-# جهد عمل جهد
+# resArray = getPrediction(sentence)
+# for query in resArray:
+#     print(query)
+
+getProbAll()
+file.close()
+
+if __name__ == '__main__':
+    app.run()

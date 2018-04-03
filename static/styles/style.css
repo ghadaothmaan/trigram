@@ -4,16 +4,39 @@
 /*font-family: 'Droid Arabic Naskh', serif;*/
 @import url(https://fonts.googleapis.com/earlyaccess/amiri.css);
 
-@import url(https://fonts.googleapis.com/earlyaccess/lateef.css);
-/* font-family: 'Lateef', serif; */
-
-@import url(https://fonts.googleapis.com/earlyaccess/scheherazade.css);
-/*font-family: 'Scheherazade', serif;*/
-
-@import url(https://fonts.googleapis.com/earlyaccess/thabit.css);
-/* font-family: 'Thabit', serif; */
-
 body {
-  background: #785D56;
+  background: #779ec9;
   font-family: 'Amiri','Droid Arabic Naskh', sans-serif;
 }
+
+form { 
+    margin: 0 auto; 
+    width:250px;
+    text-align: center;
+}
+
+h2 { 
+    margin: 0 auto; 
+    width:250px;
+    text-align: center;
+}
+
+search {
+  width: 700px;
+  margin: 16px auto;
+  font-size: 16px;
+}
+
+search-header {
+  padding: 20px;
+  font-size: 1.4em;
+  font-weight: normal;
+  text-align: center;
+  color: #fff;
+}
+
+search-container {
+  padding: 12px;
+  text-align: center; 
+}
+
